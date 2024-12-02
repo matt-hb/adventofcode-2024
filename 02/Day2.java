@@ -1,22 +1,22 @@
 import java.io.*;
 import java.util.*;
 
-public class Safe {
-    public static void main(String[] args) throws IOException {
-        List<List<Integer>> list = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader(new File("input.txt")));
-        String line = br.readLine();
-        while (line != null) {
-            List<Integer> current = new ArrayList<>();
-            String[] parts = line.split(" ");
-            for (String part : parts) {
-                current.add(Integer.parseInt(part));
-            }
-            list.add(current);
-            line = br.readLine();
-        }
-        br.close();
+public class Day2 {
+    static List<List<Integer>> list;
 
+    public static int level1() throws IOException {
+        readInput();
+        int safeCount = 0;
+        for (List<Integer> l : list) {
+            if (isSafe(l)) {
+                safeCount++;
+            }
+        }
+        return safeCount;
+    }
+
+    public static int level2() throws IOException {
+        readInput();
         int safeCount = 0;
         for (List<Integer> l : list) {
             if (isSafe(l)) {
@@ -35,10 +35,26 @@ public class Safe {
             }
             // End of Only for level 2
         }
-        System.out.println("Safe lines found" + safeCount);
+        return safeCount;
     }
 
-    public static boolean isSafe(List<Integer> list){
+    private static void readInput() throws IOException {
+        list = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(new File("02/input.txt")));
+        String line = br.readLine();
+        while (line != null) {
+            List<Integer> current = new ArrayList<>();
+            String[] parts = line.split(" ");
+            for (String part : parts) {
+                current.add(Integer.parseInt(part));
+            }
+            list.add(current);
+            line = br.readLine();
+        }
+        br.close();
+    }
+
+    private static boolean isSafe(List<Integer> list){
         List<Integer> copy = new ArrayList<>(list);
         Collections.sort(copy);
         List<Integer> copy2 = new ArrayList<>(list);

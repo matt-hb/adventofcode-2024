@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 public class Day3 {
     static String input;
     public static int level1() {
-        Pattern p = Pattern.compile("mul[(]\\d+,\\d+[)]");
+        Pattern p = Pattern.compile("mul\\(\\d+,\\d+\\)");
         Matcher m = p.matcher(input);
         int out = 0;
         while (m.find()) {
@@ -17,7 +17,7 @@ public class Day3 {
 
     public static int level2() {
         boolean currentlyEnabled = true;
-        Pattern p = Pattern.compile("don't[(][)]|do[(][)]|mul[(]\\d+,\\d+[)]");
+        Pattern p = Pattern.compile("don't\\(\\)|do\\(\\)|mul\\(\\d+,\\d+\\)");
         Matcher m = p.matcher(input);
         int out = 0;
         while (m.find()) {

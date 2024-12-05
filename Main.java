@@ -16,5 +16,9 @@ public class Main {
         System.out.println("--- Day 4 ---");
         System.out.println("Day 4 level 1: " + Day4.level1());
         System.out.println("Day 4 level 2: " + Day4.level2());
+
+        System.out.println("--- Day 5 ---");
+        System.out.println("Day 5 level 1: " + Day5.level1());
+        System.out.println("Day 5 level 2: " + Day5.level2());
     }
 }

@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Day5 {
     // key is the page number on the right, value is a list of pages that must precede it
-    static Map<Integer, List<Integer>> rules;
+    static Map<Integer, Set<Integer>> rules;
     // the proposed changes as a list of page numbers
     static List<List<Integer>> changes;
 
@@ -63,7 +63,7 @@ public class Day5 {
         if (!rules.containsKey(page)){
             return false;
         }
-        List<Integer> checks = rules.get(page);
+        Set<Integer> checks = rules.get(page);
         return checks.stream()
                     .anyMatch(check -> change.contains(check) && change.indexOf(page) < change.indexOf(check));
     }
@@ -96,9 +96,9 @@ public class Day5 {
                     if (rules.containsKey(later)){
                         rules.get(later).add(earlier);
                     } else {
-                        List<Integer> list = new ArrayList<>();
-                        list.add(earlier);
-                        rules.put(later, list);
+                        Set<Integer> set = new HashSet<>();
+                        set.add(earlier);
+                        rules.put(later, set);
                     }
                 }
                 line = br.readLine();
